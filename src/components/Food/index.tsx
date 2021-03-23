@@ -12,7 +12,11 @@ interface IFoodComponentProps {
   handleEditFood: (food: IFood) => Promise<void>;
 }
 
-export const Food = ({ food, handleDelete, handleEditFood }: IFoodComponentProps) => {
+export const Food: React.FC<IFoodComponentProps> = ({
+  food,
+  handleDelete,
+  handleEditFood,
+}: IFoodComponentProps) => {
   const [isAvailable, setIsAvailable] = useState(food.available);
 
   async function toggleAvailable() {
@@ -78,4 +82,4 @@ export const Food = ({ food, handleDelete, handleEditFood }: IFoodComponentProps
       </section>
     </Container>
   );
-}
+};

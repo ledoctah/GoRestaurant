@@ -7,17 +7,16 @@ interface IHeaderComponentProps {
   openModal: () => void;
 }
 
-export const Header = ({ openModal }: IHeaderComponentProps) => {
+export const Header: React.FC<IHeaderComponentProps> = ({
+  openModal,
+}: IHeaderComponentProps) => {
   return (
     <Container>
       <header>
         <img src={Logo} alt="GoRestaurant" />
         <nav>
           <div>
-            <button
-              type="button"
-              onClick={openModal}
-            >
+            <button type="button" onClick={openModal}>
               <div className="text">Novo Prato</div>
               <div className="icon">
                 <FiPlusSquare size={24} />
@@ -27,5 +26,5 @@ export const Header = ({ openModal }: IHeaderComponentProps) => {
         </nav>
       </header>
     </Container>
-  )
-}
+  );
+};

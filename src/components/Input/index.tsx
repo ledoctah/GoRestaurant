@@ -1,22 +1,22 @@
-import {
-  useEffect,
-  useRef,
-  useState,
-  useCallback,
-} from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 
 import { useField } from '@unform/core';
 
-import { Container } from './styles';
 import { IconType } from 'react-icons/lib';
+import { Container } from './styles';
 
 interface IInputComponentsProps {
-  name: string,
-  icon: IconType;
-  children: React.ReactNode;
+  name: string;
+  icon?: IconType;
+  placeholder: string;
 }
 
-export const Input = ({ name, icon: Icon, ...rest }: IInputComponentsProps) => {
+export const Input: React.FC<IInputComponentsProps> = ({
+  name,
+  icon: Icon,
+  placeholder,
+  ...rest
+}: IInputComponentsProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [isFocused, setIsFocused] = useState(false);
@@ -51,6 +51,7 @@ export const Input = ({ name, icon: Icon, ...rest }: IInputComponentsProps) => {
         onBlur={handleInputBlur}
         defaultValue={defaultValue}
         ref={inputRef}
+        placeholder={placeholder}
         {...rest}
       />
     </Container>

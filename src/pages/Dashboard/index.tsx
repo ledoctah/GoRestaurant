@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react';
 
 import { IFood } from '../../types/Food';
 
-import Header from '../../components/Header';
+import { Header } from '../../components/Header';
 import api from '../../services/api';
 import { Food } from '../../components/Food';
-import ModalAddFood from '../../components/ModalAddFood';
-import ModalEditFood from '../../components/ModalEditFood';
+import { ModalAddFood } from '../../components/ModalAddFood';
+import { ModalEditFood } from '../../components/ModalEditFood';
 import { FoodsContainer } from './styles';
 
-export const Dashboard = () => {
+export const Dashboard: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [editingFood, setEditingFood] = useState({} as IFood);
@@ -40,10 +40,10 @@ export const Dashboard = () => {
 
   async function handleUpdateFood(food: IFood) {
     try {
-      const foodUpdated = await api.put(
-        `/foods/${editingFood.id}`,
-        { ...editingFood, ...food },
-      );
+      const foodUpdated = await api.put(`/foods/${editingFood.id}`, {
+        ...editingFood,
+        ...food,
+      });
 
       const foodsUpdated = foods.map(f =>
         f.id !== foodUpdated.data.id ? f : foodUpdated.data,
@@ -68,12 +68,12 @@ export const Dashboard = () => {
   }
 
   async function toggleEditModal() {
-    setEditModalOpen(editModalOpen);
+    setEditModalOpen(!editModalOpen);
   }
 
   async function handleEditFood(food: IFood) {
     setEditingFood(food);
-    setEditModalOpen(true);
+    toggleEditModal();
   }
 
   return (
@@ -104,4 +104,4 @@ export const Dashboard = () => {
       </FoodsContainer>
     </>
   );
-}
+};

@@ -7,7 +7,11 @@ interface IModalComponentProps {
   children: React.ReactNode;
 }
 
-export const Modal = ({ isOpen, setIsOpen, children }: IModalComponentProps) => {
+export const Modal: React.FC<IModalComponentProps> = ({
+  isOpen,
+  setIsOpen,
+  children,
+}: IModalComponentProps) => {
   const [modalStatus, setModalStatus] = useState(isOpen);
 
   useEffect(() => {
@@ -42,4 +46,4 @@ export const Modal = ({ isOpen, setIsOpen, children }: IModalComponentProps) => 
       {children}
     </ReactModal>
   );
-}
+};
